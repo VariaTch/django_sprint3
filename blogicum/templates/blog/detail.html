@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ post.location }}. {{ post.pub_date|date:"d E Y года" }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <ul>
+    <li>Место: {{ post.location }}</li>
+    <li>Дата: {{ post.date }}</li>
+    <li>
+      Категория:
+      {% if post.category %}
+      <a href="{% url 'blog:category_posts' category_slug=post.category %}">
+        {{ post.category }}
+      </a>
+      {% else %}
+      <span>Без категории</span>
+      {% endif %}
+    </li>
+  </ul>
+  <p style="white-space: pre-line;">
+    {{ post.text }}
+  </p>
+</article>
+{% endblock %}
